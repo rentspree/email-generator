@@ -1,0 +1,46 @@
+{
+  "name": "Email Generator",
+  "version": "1.0",
+  "description": "generator only input type email and input type password and default by @rentspree email",
+  "permissions": [
+    "activeTab",
+    "declarativeContent",
+    "<all_urls>",
+    "storage"
+  ],
+  "manifest_version": 2,
+  "content_scripts": [{
+    "js": [
+      "content.js"
+    ],
+    "matches": ["https://www.ladprao21.com/account/signup"]
+  }],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/rentspree-logo16.png",
+      "32": "images/rentspree-logo32.png",
+      "48": "images/rentspree-logo48.png",
+      "128": "images/rentspree-logo128.png"
+    }
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "icons": {
+      "16": "images/rentspree-logo16.png",
+      "32": "images/rentspree-logo32.png",
+      "48": "images/rentspree-logo48.png",
+      "128": "images/rentspree-logo128.png"
+  },
+  "commands": {
+    "change_input": {
+      "suggested_key": {
+          "default": "Ctrl+Shift+Y",
+          "mac": "Command+Shift+Y"
+      },
+      "description": "generator shortcuts"
+    }
+  }
+}
