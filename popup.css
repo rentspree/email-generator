@@ -5,14 +5,15 @@
 .body {
   width: auto;
   padding: 0;
+  margin: 0;
 }
 .titleContainer {
-  width: 310px;
+  width: 350px;
   height: 28px;
   display: flex;
   justify-content: center;
   text-align: center;
-  background: #4b97f5;
+  background: linear-gradient(45deg, rgba(59,153,252,1) 0%, rgba(0,122,223,1) 41%, rgba(0,122,223,1) 73%, rgba(0,213,169,1) 99%);
   align-items: center;
 }
 .emailContainer {
@@ -20,33 +21,41 @@
   flex-direction: row;
   align-content: center;
   margin-top: 10px;
+  padding: 0 10px;
 }
 .emailLabel {
   font-size: 14px;
   margin-right: 5px;
+  color: #303e51;
 }
 .emailInput {
   width: 100%;
   height: 17px;
-  border-radius: 6px;
+  border-radius: 3px;
   margin-right: 5px;
   border: 1px solid gray;
+  padding: 0 5px;
+  color: #303e51;
 }
 .emailAtLabel {
   font-size: 14px;
   margin-right: 5px;
+  color: #303e51;
 }
 .emailAtInput {
   height: 17px;
   width: 100%;
-  border-radius: 6px;
+  border-radius: 3px;
   border: 1px solid gray;
+  padding: 0 5px;
+  color: #303e51;
 }
 .passwordContainer {
   display: flex;
   flex-direction: row;
   align-content: center;
   margin-top: 10px;
+  padding: 0 10px;
 }
 .buttonContainer {
   display: flex;
@@ -54,16 +63,27 @@
   align-content: center;
   justify-content: flex-end;
   margin-top: 10px;
+  padding: 0px 10px 10px;
 }
 .shortcut {
-  margin-top: 2px;
-  font-size: 8px;
+  margin-top: 4px;
+  font-size: 11px;
   margin-right: 10px;
+  color: gray;
 }
 .buttonGen {
-  background: #4b97f5;
+  background: #007adf;
   border: 0px;
   border-radius: 4px;
   color: white;
-  height: 17px;
+  height: 24px;
+}
+.buttonGen:hover {
+  background: #0062b3;
+}
+.emailAtInput:focus{
+  outline: none;
+}
+.emailInput:focus{
+  outline: none;
 }

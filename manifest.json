@@ -1,27 +1,31 @@
 {
   "name": "Email Generator",
-  "version": "1.0",
+  "version": "1.1.0",
   "description": "generator only input type email and input type password and default by @rentspree email",
   "permissions": [
     "activeTab",
+    "https://www.ladprao21.com/*",
+    "https://www.chokchai4.com/*",
     "declarativeContent",
     "<all_urls>",
-    "storage"
+    "storage",
+    "background",
+    "tabs"
   ],
   "manifest_version": 2,
   "content_scripts": [{
     "js": [
       "content.js"
     ],
-    "matches": ["https://www.ladprao21.com/account/signup"]
+    "matches": ["https://www.ladprao21.com/*", "https://www.chokchai4.com/*"]
   }],
   "browser_action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "images/rentspree-logo16.png",
-      "32": "images/rentspree-logo32.png",
-      "48": "images/rentspree-logo48.png",
-      "128": "images/rentspree-logo128.png"
+      "16": "images/new-rentspree-logo16.png",
+      "32": "images/new-rentspree-logo32.png",
+      "48": "images/new-rentspree-logo48.png",
+      "128": "images/new-rentspree-logo128.png"
     }
   },
   "background": {
@@ -29,10 +33,10 @@
     "persistent": true
   },
   "icons": {
-      "16": "images/rentspree-logo16.png",
-      "32": "images/rentspree-logo32.png",
-      "48": "images/rentspree-logo48.png",
-      "128": "images/rentspree-logo128.png"
+      "16": "images/new-rentspree-logo16.png",
+      "32": "images/new-rentspree-logo32.png",
+      "48": "images/new-rentspree-logo48.png",
+      "128": "images/new-rentspree-logo128.png"
   },
   "commands": {
     "change_input": {

@@ -3,27 +3,20 @@ let prefixEmail = document.getElementById("emailPrefix")
 let subfixEmail = document.getElementById("emailSubfix")
 let password = document.getElementById("password")
 
-// document.getElementById("emailPrefix").addEventListener("", (element) => {
-//   console.log("test ==> ", proficEmail.target.value);
-// })
-
 // ================= frist open popup setting ================================
 console.log("Open popop");
 
 chrome.storage.sync.get("prefix", function(result) {
-  console.log('Value currently is ' + result.prefix);
   prefixEmail.value = result.prefix || ""
 })
 chrome.storage.sync.get("subfix", function(result) {
-  console.log('Value currently is ' + result.subfix);
   subfixEmail.value = result.subfix || ""
 })
 chrome.storage.sync.get("password", function(result) {
-  console.log('Value currently is ' + result.password);
   password.value = result.password || ""
 })
 // ===========================================================================
-// ======================= On value somw input Change ========================
+// ======================= On value some input Change ========================
 prefixEmail.onchange = (e) => {
   const value = e.target.value
   chrome.storage.sync.set({ "prefix": value }, function() {
@@ -58,44 +51,53 @@ document.getElementById("Gen").addEventListener('click', () => {
       return randTimeout
     }
     chrome.storage.sync.get("prefix", function(result) {
-      console.log('Value currently is ' + result.prefix);
-      prefixData = result.prefix
+      prefixData = result.prefix || "support+"
     })
     chrome.storage.sync.get("subfix", function(result) {
-      console.log('Value currently is ' + result.subfix);
-      subfixData = result.subfix
+      subfixData = result.subfix || "rentspree.com"
     })
     chrome.storage.sync.get("password", function(result) {
-      console.log('Value currently is ' + result.password);
-      passwordData = result.password
+      passwordData = result.password || "myPassword1"
     })
-  
+    const getTime = new Date().getTime()
     function autoFill() {
-        console.log("The AutoClickSelector script is getting started")
         var nextTime = getRandomTimeout()
-        // emailElements[0].value = "thanawatpinya+testExtension-1@rentspree.com"
-        // passwordElements[0].value = "123412351"
-        setTimeout(function() {
-          emailElements[0].setAttribute("value", `${prefixData}+${new Date().getTime()}@${subfixData}`)
-          emailElements[0].dispatchEvent(new Event("change", { bubbles: true }))
-        }, nextTime + 100)
-        setTimeout(function() {
-          passwordElements[0].value = passwordData
-          passwordElements[0].dispatchEvent(new Event("change", { bubbles: true }))
-        }, nextTime + 100)
-  
-        // console.log(emailElements[0])
-        // console.log(passwordElements[0])
+        const url = window.location.toString()
+        if (url.search("signup") >= 0) {
+          setTimeout(function() {
+            emailElements[0].value = `${prefixData}${getTime}@${subfixData}`
+            emailElements[0].dispatchEvent(new Event("change", { bubbles: true }))
+          }, nextTime + 100)
+          setTimeout(function() {
+            passwordElements[0].value = passwordData
+            passwordElements[0].dispatchEvent(new Event("change", { bubbles: true }))
+          }, nextTime + 100)
+          chrome.storage.sync.set({ "previousTime": getTime }, function() {
+            console.log('previousTime is set to ' + getTime);
+          });
+        } else if (url.search("login") >= 0) {
+          let previousTime
+          chrome.storage.sync.get("previousTime", function(result) {
+            previousTime = result.previousTime || getTime
+          })
+          setTimeout(function() {
+            emailElements[0].value = `${prefixData}${previousTime}@${subfixData}`
+            emailElements[0].dispatchEvent(new Event("change", { bubbles: true }))
+          }, nextTime + 100)
+          setTimeout(function() {
+            passwordElements[0].value = passwordData
+            passwordElements[0].dispatchEvent(new Event("change", { bubbles: true }))
+          }, nextTime + 100)
+        }
     }
   
     autoFill();
   }
-  
-});
+  //We have permission to access the activeTab, so we can call chrome.tabs.executeScript:
+  chrome.tabs.executeScript({
+    code: '(' + modifyDOM + ')();' //argument here is a string but function.toString() returns function's code
+  });
 
-//We have permission to access the activeTab, so we can call chrome.tabs.executeScript:
-chrome.tabs.executeScript({
-  code: '(' + modifyDOM + ')();' //argument here is a string but function.toString() returns function's code
 });
 
 // =============================================================================================
