@@ -11,7 +11,7 @@
   width: 350px;
   height: 28px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   text-align: center;
   background: linear-gradient(45deg, rgba(59,153,252,1) 0%, rgba(0,122,223,1) 41%, rgba(0,122,223,1) 73%, rgba(0,213,169,1) 99%);
   align-items: center;
@@ -86,4 +86,15 @@
 }
 .emailInput:focus{
   outline: none;
+}
+.option-button {
+  background: transparent;
+  border: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.option-image {
+  width: 18px;
+    height: 18px;
 }

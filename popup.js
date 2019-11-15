@@ -100,6 +100,16 @@ document.getElementById("Gen").addEventListener('click', () => {
 
 });
 
+document.getElementById("go-to-options").addEventListener('click', () => {
+  console.log("Onclick ===> go to page");
+  if (chrome.runtime.openOptionsPage) {
+    chrome.runtime.openOptionsPage();
+  } else {
+    window.open(chrome.runtime.getURL('options.html'));
+  }
+})
+
+
 // =============================================================================================
 // ================================ Re-Check storage change ====================================
 chrome.storage.onChanged.addListener(function(changes, namespace) {

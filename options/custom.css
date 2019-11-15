@@ -1,0 +1,16 @@
+.input-container {
+  display: flex;
+  width: 100%;
+}
+.email-input {
+  margin-right: 20px;
+}
+
+.button-overlay-style {
+  height: 38px;
+}
+
+.password-input {
+  width: 60%;
+  margin-right: 20px;
+}
